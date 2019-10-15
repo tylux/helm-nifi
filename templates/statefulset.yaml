@@ -107,6 +107,24 @@ spec:
           prop_replace nifi.cluster.node.address ${FQDN}
           prop_replace nifi.web.http.host ${FQDN}
           prop_replace nifi.zookeeper.connect.string ${NIFI_ZOOKEEPER_CONNECT_STRING}
+          prop_replace nifi.remote.input.host ${FQDN}
+          prop_replace nifi.cluster.node.address ${FQDN}
+          prop_replace nifi.web.http.host ${FQDN}
+          #from https://github.com/apache/nifi/blob/d7ca37d065677e3016477f74ecdfe233ccd725c7/nifi-docker/dockerhub/sh/start.sh#L35
+          prop_replace nifi.zookeeper.connect.string ${NIFI_ZOOKEEPER_CONNECT_STRING}
+          prop_replace nifi.variable.registry.properties ${NIFI_VARIABLE_REGISTRY_PROPERTIES}
+          prop_replace 'nifi.web.http.port'               "${NIFI_WEB_HTTP_PORT:-8080}"
+          prop_replace 'nifi.remote.input.socket.port'    "${NIFI_REMOTE_INPUT_SOCKET_PORT:-10000}"
+          prop_replace 'nifi.remote.input.secure'         'false'
+          prop_replace 'nifi.variable.registry.properties'    "${NIFI_VARIABLE_REGISTRY_PROPERTIES:-}"
+          prop_replace 'nifi.cluster.is.node'                         "${NIFI_CLUSTER_IS_NODE:-false}"
+          prop_replace 'nifi.cluster.node.protocol.port'              "${NIFI_CLUSTER_NODE_PROTOCOL_PORT:-}"
+          prop_replace 'nifi.cluster.node.protocol.threads'           "${NIFI_CLUSTER_NODE_PROTOCOL_THREADS:-10}"
+          prop_replace 'nifi.cluster.node.protocol.max.threads'       "${NIFI_CLUSTER_NODE_PROTOCOL_MAX_THREADS:-50}"
+          prop_replace 'nifi.zookeeper.root.node'                     "${NIFI_ZK_ROOT_NODE:-/nifi}"
+          prop_replace 'nifi.cluster.flow.election.max.wait.time'     "${NIFI_ELECTION_MAX_WAIT:-5 mins}"
+          prop_replace 'nifi.cluster.flow.election.max.candidates'    "${NIFI_ELECTION_MAX_CANDIDATES:-}"
+          prop_replace 'nifi.web.proxy.context.path'                  "${NIFI_WEB_PROXY_CONTEXT_PATH:-}"
 
           exec bin/nifi.sh run
         resources:
